@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLBoolean } = require('graphql');
 const { GraphQLDateTime } = require('graphql-iso-date');
 
 const UserType = new GraphQLObjectType({
@@ -9,6 +9,7 @@ const UserType = new GraphQLObjectType({
         email: { type: GraphQLString },
         createdAt: { type: GraphQLDateTime, resolve: user => user.created_at },
         modifiedAt: { type: GraphQLDateTime, resolve: user => user.modified_at },
+        isDeleted: { type: GraphQLBoolean, resolve: user => user.is_deleted },
     }),
 });
 

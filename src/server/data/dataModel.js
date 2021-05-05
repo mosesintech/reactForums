@@ -29,6 +29,12 @@ async function softDeleteOne(database, id) {
     return findOne(database, id);
 }
 
+async function restoreDeletedOne(database, id) {
+    await db(database).where({ id }).update('is_deleted', false);
+    await db(database).where({ id }).update('modified_at', db.fn.now());
+    return findOne(database, id);
+}
+
 module.exports = {
     findAll,
     findOne,
@@ -36,4 +42,5 @@ module.exports = {
     addOne,
     updateOne,
     softDeleteOne,
+    restoreDeletedOne,
 }

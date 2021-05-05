@@ -1,14 +1,14 @@
 const { GraphQLNonNull, GraphQLID } = require('graphql');
 const { UserType } = require('../../../types.js');
-const { deleteUser } = require('../userModel.js');
+const { restoreUser } = require('../userModel.js');
 
 module.exports = {
-    name: 'deleteUser',
+    name: 'restoreUser',
     type: UserType,
     args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
     },
     resolve(parents, args) {
-        return deleteUser(args.id);
+        return restoreUser(args.id);
     },
 };

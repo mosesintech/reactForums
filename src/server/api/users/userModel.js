@@ -4,7 +4,9 @@ const {
     findAll,
     findByParam,
     addOne,
-    updateOne
+    updateOne,
+    softDeleteOne,
+    restoreDeletedOne,
     } = require('../../data/dataModel.js');
 
 function getUsers() {
@@ -51,6 +53,28 @@ async function updateUser(user) {
     return updateOne('users', idExists.id, user);
 }
 
+async function deleteUser(id) {
+    const idExists = await getUser(id);
+    if(!idExists) {
+        throw new Error('This user does not exists.');
+    }
+    if(idExists.is_deleted) {
+        throw new Error('This user is already deleted.');
+    }
+    return softDeleteOne('users', id);
+}
+
+async function restoreUser(id) {
+    const idExists = await getUser(id);
+    if(!idExists) {
+        throw new Error('This user does not exists.');
+    }
+    if(!idExists.is_deleted) {
+        throw new Error('This user is not deleted.');
+    }
+    return restoreDeletedOne('users', id);
+}
+
 module.exports = {
     getUsers,
     getUser,
@@ -58,4 +82,6 @@ module.exports = {
     getUserByEmail,
     addUser,
     updateUser,
+    deleteUser,
+    restoreUser,
 }
