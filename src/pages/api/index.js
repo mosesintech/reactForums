@@ -1,5 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+const server = require('../../server');
 
-export default (req, res) => {
-  res.status(200).json({ name: 'John Doe' })
-}
+module.exports = server;

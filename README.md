@@ -8,3 +8,5 @@
 4. Forums Features: Categories, Forums, Threads, Posts
 5. Moderation: user/post reporting, locking/unlocking, pinning/unpinning, anouncements, user banning, archiving
 6. Administration: creating/updating/deleting categories/forums, updating forum settings.
+
+# Current Stage: DRM 1 Users
