@@ -1,5 +1,11 @@
-const { findOne, findAll, findByParam, addOne } = require('../../data/dataModel.js');
 const { hashUser } = require('../auth/authModel.js');
+const { 
+    findOne,
+    findAll,
+    findByParam,
+    addOne,
+    updateOne
+    } = require('../../data/dataModel.js');
 
 function getUsers() {
     return findAll('users');
@@ -30,10 +36,26 @@ async function addUser(user) {
     return addOne('users', hashedUser);
 }
 
+async function updateUser(user) {
+    const idExists = await getUser(user.id);
+    if(!idExists) {
+        throw new Error('This user does not exists.');
+    }
+    const identicalUsername = idExists.username === user.username;
+    const identicalEmail = idExists.email === user.email;
+    const identicalPassword = idExists.password === user.password;
+    const noChange = identicalUsername && identicalEmail && identicalPassword;
+    if(noChange) {
+        throw new Error('No user changes submitted.');
+    }
+    return updateOne('users', idExists.id, user);
+}
+
 module.exports = {
     getUsers,
     getUser,
     getUserByUsername,
     getUserByEmail,
     addUser,
+    updateUser,
 }
