@@ -13,6 +13,14 @@ const UserType = new GraphQLObjectType({
     }),
 });
 
+const AuthType = new GraphQLObjectType({
+    name: 'AuthType',
+    fields: () => ({
+        token: { type: GraphQLString, resolve: token => token },
+    }),
+});
+
 module.exports = {
     UserType,
+    AuthType,
 }
