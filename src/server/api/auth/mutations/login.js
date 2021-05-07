@@ -9,7 +9,7 @@ module.exports = {
         email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) },
     },
-    resolve(parents, args) {
-        return login(args);
+    resolve(parents, args, context) {
+        return login(args, context);
     },
 };
