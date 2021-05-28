@@ -13,6 +13,20 @@ const UserType = new GraphQLObjectType({
     }),
 });
 
+const CategoryType = new GraphQLObjectType({
+    name: 'CategoryType',
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        createdAt: { type: GraphQLDateTime, resolve: category => category.created_at },
+        modifiedAt: { type: GraphQLDateTime, resolve: category => category.modified_at },
+        isDeleted: { type: GraphQLBoolean, resolve: category => category.is_deleted },
+        isPrivate: { type: GraphQLBoolean, resolve: category => category.is_private },
+    })
+});
+
 module.exports = {
     UserType,
+    CategoryType,
 }
