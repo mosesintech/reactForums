@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import moment from 'moment';
 import { useQuery } from 'urql';
+import moment from 'moment';
 import DeletedProfile from './DeletedProfile.js';
 
 export default function Memberlist() {
