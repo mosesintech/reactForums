@@ -40,11 +40,17 @@ async function updateCategory(category) {
     }
     const identicalName = idExists.name === category.name;
     const identicalDescription = idExists.description === category.description;
-    const noChange = identicalName && identicalDescription;
+    const identicalSecurity = idExists.is_private === category.isPrivate;
+    const noChange = identicalName && identicalDescription && identicalSecurity;
     if(noChange) {
         throw new Error('No category changes submitted.');
     }
-    return updateOne('categories', idExists.id, category);
+    const updatedCategory = {
+        name: category.name,
+        description: category.description,
+        is_private: category.isPrivate,
+    }
+    return updateOne('categories', idExists.id, updatedCategory);
 }
 
 async function deleteCategory(id) {
