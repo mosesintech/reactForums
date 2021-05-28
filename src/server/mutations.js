@@ -1,6 +1,6 @@
 const { GraphQLObjectType } = require('graphql');
 const { addUser, updateUser, deleteUser, restoreUser } = require('./api/users/mutations');
-const { addCategory, updateCategory } = require('./api/categories/mutations');
+const { addCategory, updateCategory, deleteCategory } = require('./api/categories/mutations');
 
 module.exports = new GraphQLObjectType({
     name: 'Mutation',
@@ -11,5 +11,6 @@ module.exports = new GraphQLObjectType({
         restoreUser,
         addCategory,
         updateCategory,
+        deleteCategory,
     }
 });
