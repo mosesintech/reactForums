@@ -1,4 +1,4 @@
-const { GraphQLID, GraphQLString } = require('graphql');
+const { GraphQLID } = require('graphql');
 const { CategoryType } = require('../../../types.js');
 const { getCategory } = require('../categoriesModel.js');
 

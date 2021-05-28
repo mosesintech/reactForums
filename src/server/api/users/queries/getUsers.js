@@ -1,4 +1,4 @@
-const { GraphQLList, GraphQLID } = require('graphql');
+const { GraphQLList } = require('graphql');
 const { UserType } = require('../../../types.js');
 const { getUsers } = require('../userModel.js');
 
