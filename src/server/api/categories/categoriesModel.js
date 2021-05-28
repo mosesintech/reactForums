@@ -16,8 +16,21 @@ function getCategory(id) {
     return findOne('categories', id);
 }
 
+function getCategoryByName(name) {
+    return findByParam('categories', { name });
+}
+
 async function addCategory(category) {
-    return addOne('categories', category);
+    const nameExists = await getCategoryByName(category.name);
+    if(nameExists) {
+        throw new Error('Category name is already in use.');
+    }
+    const newCategory = {
+        name: category.name,
+        description: category.description,
+        is_private: category.isPrivate,
+    }
+    return addOne('categories', newCategory);
 }
 
 async function updateCategory(category) {
