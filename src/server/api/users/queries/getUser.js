@@ -10,12 +10,15 @@ module.exports = {
         email: { type: GraphQLString },
     },
     resolve(parents, args) {
+        if(args.email) {
+            return getUserByEmail(args.email);
+        }
         if(args.id) {
             return getUser(args.id);
         }
         if(args.username) {
             return getUserByUsername(args.username);
         }
-        return getUserByEmail(args.email);
+        throw new Error('Please provide a User ID, Username, or Email.');
     },
 };
