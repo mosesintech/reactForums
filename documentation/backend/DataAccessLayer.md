@@ -10,6 +10,7 @@ Because almost every application that exists follows the CRUD model (Create, Rea
 These functions are findAll, findOne, findByParam, addOne, updateOne, softDeleteOne, and restoreDeletedOne.
 
 The first three are Read functions that will find and return data from the database.
+
 "findAll" returns an array of items.
 
 "findOne" returns a single item using the id.
