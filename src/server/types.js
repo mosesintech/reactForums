@@ -26,7 +26,22 @@ const CategoryType = new GraphQLObjectType({
     })
 });
 
+const ForumType = new GraphQLObjectType({
+    name: 'ForumType',
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        createdAt: { type: GraphQLDateTime, resolve: forum => forum.created_at },
+        modifiedAt: { type: GraphQLDateTime, resolve: forum => forum.modified_at },
+        isDeleted: { type: GraphQLBoolean, resolve: forum => forum.is_deleted },
+        isPrivate: { type: GraphQLBoolean, resolve: forum => forum.is_private },
+        categoryID: { type: GraphQLID, resolve: forum => forum.category_id },
+    })
+});
+
 module.exports = {
     UserType,
     CategoryType,
+    ForumType,
 }
