@@ -3,6 +3,7 @@ const { CategoryType } = require('../../../types.js');
 const { addCategory } = require('../categoriesModel.js');
 
 module.exports = {
+    name: 'addCategory',
     type: CategoryType,
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },

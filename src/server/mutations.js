@@ -4,6 +4,10 @@ const { addCategory,
     updateCategory,
     deleteCategory,
     restoreCategory } = require('./api/categories/mutations');
+const { addForum,
+    updateForum,
+    deleteForum,
+    restoreForum, } = require('./api/forums/mutations');
 
 module.exports = new GraphQLObjectType({
     name: 'Mutation',
@@ -16,5 +20,9 @@ module.exports = new GraphQLObjectType({
         updateCategory,
         deleteCategory,
         restoreCategory,
+        addForum,
+        updateForum,
+        deleteForum,
+        restoreForum,
     }
 });

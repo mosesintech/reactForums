@@ -35,15 +35,15 @@ async function addForum(forum) {
 }
 
 async function updateForum(forum) {
-    const idExists = await getCategory(forum.id);
+    const idExists = await getForum(forum.id);
     if(!idExists) {
         throw new Error('This forum does not exists.');
     }
     const identicalName = idExists.name === forum.name;
     const identicalDescription = idExists.description === forum.description;
     const identicalSecurity = idExists.is_private === forum.isPrivate;
-    const identicalParent = idExists.category_id === forum.categoryID;
-    const noChange = identicalName && identicalDescription && identicalSecurity && identicalParent;
+    const identicalParent = idExists.category_id.toString() === forum.categoryID;
+   const noChange = identicalName && identicalDescription && identicalSecurity && identicalParent;
     if(noChange) {
         throw new Error('No forum changes submitted.');
     }
