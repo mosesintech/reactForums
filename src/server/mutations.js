@@ -8,6 +8,10 @@ const { addForum,
     updateForum,
     deleteForum,
     restoreForum, } = require('./api/forums/mutations');
+const { addThread,
+    updateThread,
+    deleteThread,
+    restoreThread, } = require('./api/threads/mutations');
 
 module.exports = new GraphQLObjectType({
     name: 'Mutation',
@@ -24,5 +28,9 @@ module.exports = new GraphQLObjectType({
         updateForum,
         deleteForum,
         restoreForum,
+        addThread,
+        updateThread,
+        deleteThread,
+        restoreThread,
     }
 });

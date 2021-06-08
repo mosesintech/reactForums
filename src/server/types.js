@@ -40,8 +40,24 @@ const ForumType = new GraphQLObjectType({
     })
 });
 
+const ThreadType = new GraphQLObjectType({
+    name: 'ThreadType',
+    fields: () => ({
+        id: { type: GraphQLID },
+        title: { type: GraphQLString },
+        text: { type: GraphQLString },
+        createdAt: { type: GraphQLDateTime, resolve: thread => thread.created_at },
+        modifiedAt: { type: GraphQLDateTime, resolve: thread => thread.modified_at },
+        isLocked: { type: GraphQLBoolean, resolve: thread => thread.is_locked },
+        isDeleted: { type: GraphQLBoolean, resolve: thread => thread.is_deleted },
+        forumID: { type: GraphQLID, resolve: thread => thread.forum_id },
+        authorID: { type: GraphQLID, resolve: thread => thread.author_id },
+    })
+});
+
 module.exports = {
     UserType,
     CategoryType,
     ForumType,
+    ThreadType,
 }
