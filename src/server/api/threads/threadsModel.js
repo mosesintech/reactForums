@@ -2,6 +2,7 @@ const {
     findOne,
     findAll,
     findByParam,
+    findManyByParam,
     addOne,
     updateOne,
     softDeleteOne,
@@ -18,6 +19,18 @@ function getThread(id) {
 
 function getThreadByTitle(title) {
     return findByParam('threads', { title });
+}
+
+async function getThreadsByUser(userID) {
+    const author_id = userID;
+    const threads = await findManyByParam('threads', { author_id });
+    return threads;
+}
+
+async function getThreadsByForum(forumID) {
+    const forum_id = forumID;
+    const threads = await findManyByParam('threads', { forum_id });
+    return threads;
 }
 
 async function addThread(thread) {
@@ -84,6 +97,8 @@ async function restoreThread(id) {
 module.exports = {
     getThreads,
     getThread,
+    getThreadsByUser,
+    getThreadsByForum,
     addThread,
     updateThread,
     deleteThread,

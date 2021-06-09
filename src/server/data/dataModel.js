@@ -12,6 +12,10 @@ function findByParam(database, param) {
     return db(database).where(param).first();
 }
 
+function findManyByParam(database, param) {
+    return db(database).where(param);
+}
+
 async function addOne(database, item) {
     const [id] = await db(database).insert(item, 'id');
     return findOne(database, id);
@@ -39,6 +43,7 @@ module.exports = {
     findAll,
     findOne,
     findByParam,
+    findManyByParam,
     addOne,
     updateOne,
     softDeleteOne,

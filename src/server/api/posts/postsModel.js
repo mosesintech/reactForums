@@ -2,6 +2,7 @@ const {
     findOne,
     findAll,
     findByParam,
+    findManyByParam,
     addOne,
     updateOne,
     softDeleteOne,
@@ -14,6 +15,12 @@ function getPosts() {
 
 function getPost(id) {
     return findOne('posts', id);
+}
+
+async function getPostsByUser(userID) {
+    const author_id = userID;
+    const posts = await findManyByParam('posts', { author_id })
+    return posts;
 }
 
 async function addPost(post) {
@@ -73,6 +80,7 @@ async function restorePost(id) {
 module.exports = {
     getPost,
     getPosts,
+    getPostsByUser,
     addPost,
     updatePost,
     deletePost,

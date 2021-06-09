@@ -1,5 +1,14 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLBoolean } = require('graphql');
+const { GraphQLObjectType,
+    GraphQLString,
+    GraphQLID,
+    GraphQLBoolean,
+    GraphQLList } = require('graphql');
 const { GraphQLDateTime } = require('graphql-iso-date');
+const { getUser } = require('./api/users/userModel.js');
+const { getPostsByUser } = require('./api/posts/postsModel.js');
+const { getThread, getThreadsByUser, getThreadsByForum } = require('./api/threads/threadsModel.js');
+const { getCategory } = require('./api/categories/categoriesModel.js');
+const { getForum, getForumByCategory } = require('./api/forums/forumsModel.js');
 
 const UserType = new GraphQLObjectType({
     name: 'UserType',
@@ -10,6 +19,18 @@ const UserType = new GraphQLObjectType({
         createdAt: { type: GraphQLDateTime, resolve: user => user.created_at },
         modifiedAt: { type: GraphQLDateTime, resolve: user => user.modified_at },
         isDeleted: { type: GraphQLBoolean, resolve: user => user.is_deleted },
+        threads: { 
+            type: new GraphQLList(ThreadType),
+            resolve(parent, args, ctx) {
+                return getThreadsByUser(parent.id);
+            }
+        },
+        posts: { 
+            type: new GraphQLList(PostType),
+            resolve(parent, args, ctx) {
+                return getPostsByUser(parent.id);
+            }
+        }
     }),
 });
 
@@ -23,6 +44,12 @@ const CategoryType = new GraphQLObjectType({
         modifiedAt: { type: GraphQLDateTime, resolve: category => category.modified_at },
         isDeleted: { type: GraphQLBoolean, resolve: category => category.is_deleted },
         isPrivate: { type: GraphQLBoolean, resolve: category => category.is_private },
+        forums: {
+            type: new GraphQLList(ForumType),
+            resolve(parent, args, ctx) {
+                return getForumByCategory(parent.id)
+            }
+        }
     })
 });
 
@@ -36,7 +63,18 @@ const ForumType = new GraphQLObjectType({
         modifiedAt: { type: GraphQLDateTime, resolve: forum => forum.modified_at },
         isDeleted: { type: GraphQLBoolean, resolve: forum => forum.is_deleted },
         isPrivate: { type: GraphQLBoolean, resolve: forum => forum.is_private },
-        categoryID: { type: GraphQLID, resolve: forum => forum.category_id },
+        category: { 
+            type: CategoryType,
+            resolve(parent, args, ctx) {
+                return getCategory(parent.category_id)
+            }
+        },
+        threads: {
+            type: new GraphQLList(ThreadType),
+            resolve(parent, args, ctx) {
+                return getThreadsByForum(parent.id);
+            }
+        }
     })
 });
 
@@ -50,8 +88,18 @@ const ThreadType = new GraphQLObjectType({
         modifiedAt: { type: GraphQLDateTime, resolve: thread => thread.modified_at },
         isLocked: { type: GraphQLBoolean, resolve: thread => thread.is_locked },
         isDeleted: { type: GraphQLBoolean, resolve: thread => thread.is_deleted },
-        forumID: { type: GraphQLID, resolve: thread => thread.forum_id },
-        authorID: { type: GraphQLID, resolve: thread => thread.author_id },
+        forum: { 
+            type: ForumType,
+            resolve(parent, arg, ctx) {
+                return getForum(parent.forum_id);
+            }
+        },
+        author: { 
+            type: UserType,
+            resolve(parent, arg, ctx) {
+                return getUser(parent.author_id);
+            }
+        },
     })
 });
 
@@ -64,8 +112,18 @@ const PostType = new GraphQLObjectType({
         modifiedAt: { type: GraphQLDateTime, resolve: post => post.modified_at },
         isLocked: { type: GraphQLBoolean, resolve: post => post.is_locked },
         isDeleted: { type: GraphQLBoolean, resolve: post => post.is_deleted },
-        threadID: { type: GraphQLID, resolve: post => post.thread_id },
-        authorID: { type: GraphQLID, resolve: post => post.author_id },
+        thread: { 
+            type: ThreadType, 
+            resolve(parent, arg, ctx) {
+                return getThread(parent.thread_id);
+            } 
+        },
+        author: { 
+            type: UserType,
+            resolve(parent, arg, ctx) {
+                return getUser(parent.author_id);
+            }
+        },
     })
 });
 

@@ -2,6 +2,7 @@ const {
     findOne,
     findAll,
     findByParam,
+    findManyByParam,
     addOne,
     updateOne,
     softDeleteOne,
@@ -18,6 +19,11 @@ function getForum(id) {
 
 function getForumByName(name) {
     return findByParam('forums', { name });
+}
+
+function getForumByCategory(categoryID) {
+    const category_id = categoryID;
+    return findManyByParam('forums', { category_id });
 }
 
 async function addForum(forum) {
@@ -81,6 +87,7 @@ async function restoreForum(id) {
 module.exports = {
     getForums,
     getForum,
+    getForumByCategory,
     addForum,
     updateForum,
     deleteForum,
