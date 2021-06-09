@@ -16,6 +16,10 @@ const { addPost,
     updatePost,
     deletePost,
     restorePost, } = require('./api/posts/mutations');
+const { addNote,
+    updateNote,
+    deleteNote,
+    restoreNote, } = require('./api/notes/mutations');
 
 module.exports = new GraphQLObjectType({
     name: 'Mutation',
@@ -40,5 +44,9 @@ module.exports = new GraphQLObjectType({
         updatePost,
         deletePost,
         restorePost,
+        addNote,
+        updateNote,
+        deleteNote,
+        restoreNote,
     }
 });

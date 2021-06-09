@@ -6,9 +6,10 @@ const { GraphQLObjectType,
 const { GraphQLDateTime } = require('graphql-iso-date');
 const { getUser } = require('./api/users/userModel.js');
 const { getPostsByUser } = require('./api/posts/postsModel.js');
-const { getThread, getThreadsByUser, getThreadsByForum } = require('./api/threads/threadsModel.js');
+const { getNotesByUser } = require('./api/notes/notesModel.js');
 const { getCategory } = require('./api/categories/categoriesModel.js');
 const { getForum, getForumByCategory } = require('./api/forums/forumsModel.js');
+const { getThread, getThreadsByUser, getThreadsByForum } = require('./api/threads/threadsModel.js');
 
 const UserType = new GraphQLObjectType({
     name: 'UserType',
@@ -30,7 +31,33 @@ const UserType = new GraphQLObjectType({
             resolve(parent, args, ctx) {
                 return getPostsByUser(parent.id);
             }
+        },
+        notes: { 
+            type: new GraphQLList(NoteType),
+            resolve(parent, args, ctx) {
+                return getNotesByUser(parent.id);
+            }
         }
+    }),
+});
+
+const NoteType = new GraphQLObjectType({
+    name: 'NoteType',
+    fields: () => ({
+        id: { type: GraphQLID },
+        title: { type: GraphQLString },
+        text: { type: GraphQLString },
+        createdAt: { type: GraphQLDateTime, resolve: note => note.created_at },
+        modifiedAt: { type: GraphQLDateTime, resolve: note => note.modified_at },
+        isLocked: { type: GraphQLBoolean, resolve: note => note.is_locked },
+        isPrivate: { type: GraphQLBoolean, resolve: note => note.is_private },
+        isDeleted: { type: GraphQLBoolean, resolve: note => note.is_deleted },
+        author: { 
+            type: UserType,
+            resolve(parent, arg, ctx) {
+                return getUser(parent.author_id);
+            }
+        },
     }),
 });
 
@@ -129,6 +156,7 @@ const PostType = new GraphQLObjectType({
 
 module.exports = {
     UserType,
+    NoteType,
     CategoryType,
     ForumType,
     ThreadType,
