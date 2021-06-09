@@ -55,9 +55,24 @@ const ThreadType = new GraphQLObjectType({
     })
 });
 
+const PostType = new GraphQLObjectType({
+    name: 'PostType',
+    fields: () => ({
+        id: { type: GraphQLID },
+        text: { type: GraphQLString },
+        createdAt: { type: GraphQLDateTime, resolve: post => post.created_at },
+        modifiedAt: { type: GraphQLDateTime, resolve: post => post.modified_at },
+        isLocked: { type: GraphQLBoolean, resolve: post => post.is_locked },
+        isDeleted: { type: GraphQLBoolean, resolve: post => post.is_deleted },
+        threadID: { type: GraphQLID, resolve: post => post.thread_id },
+        authorID: { type: GraphQLID, resolve: post => post.author_id },
+    })
+});
+
 module.exports = {
     UserType,
     CategoryType,
     ForumType,
     ThreadType,
+    PostType,
 }

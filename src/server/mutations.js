@@ -12,6 +12,10 @@ const { addThread,
     updateThread,
     deleteThread,
     restoreThread, } = require('./api/threads/mutations');
+const { addPost,
+    updatePost,
+    deletePost,
+    restorePost, } = require('./api/posts/mutations');
 
 module.exports = new GraphQLObjectType({
     name: 'Mutation',
@@ -32,5 +36,9 @@ module.exports = new GraphQLObjectType({
         updateThread,
         deleteThread,
         restoreThread,
+        addPost,
+        updatePost,
+        deletePost,
+        restorePost,
     }
 });
