@@ -1,11 +1,11 @@
-const addPost = require('./addPost.js');
-const updatePost = require('./updatePost.js');
-const deletePost = require('./deletePost.js');
-const restorePost = require('./restorePost.js');
+const addPost = require('./addPost');
+const updatePost = require('./updatePost');
+const deletePost = require('./deletePost');
+const restorePost = require('./restorePost');
 
 module.exports = {
-    addPost,
-    updatePost,
-    deletePost,
-    restorePost
-}
+  addPost,
+  updatePost,
+  deletePost,
+  restorePost,
+};

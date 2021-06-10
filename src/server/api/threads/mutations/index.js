@@ -1,11 +1,11 @@
-const addThread = require('./addThread.js');
-const updateThread = require('./updateThread.js');
-const deleteThread = require('./deleteThread.js');
-const restoreThread = require('./restoreThread.js');
+const addThread = require('./addThread');
+const updateThread = require('./updateThread');
+const deleteThread = require('./deleteThread');
+const restoreThread = require('./restoreThread');
 
 module.exports = {
-    addThread,
-    updateThread,
-    deleteThread,
-    restoreThread
-}
+  addThread,
+  updateThread,
+  deleteThread,
+  restoreThread,
+};

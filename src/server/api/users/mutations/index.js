@@ -1,11 +1,11 @@
-const addUser = require('./addUser.js');
-const updateUser = require('./updateUser.js');
-const deleteUser = require('./deleteUser.js');
-const restoreUser = require('./restoreUser.js');
+const addUser = require('./addUser');
+const updateUser = require('./updateUser');
+const deleteUser = require('./deleteUser');
+const restoreUser = require('./restoreUser');
 
 module.exports = {
-    addUser,
-    updateUser,
-    deleteUser,
-    restoreUser,
-}
+  addUser,
+  updateUser,
+  deleteUser,
+  restoreUser,
+};

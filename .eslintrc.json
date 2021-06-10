@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+      "airbnb",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier"
+    ],
+    "rules": {
+      "jsx-quotes": ["error", "prefer-single"],
+      "comma-dangle": ["error", "only-multiline"],
+      "camelcase": ["error", {"ignoreDestructuring": true, "properties": "never"}],
+      "react/prop-types": [0],
+      "react/button-has-type": [0],
+      "react/jsx-one-expression-per-line": [0],
+      "prettier/prettier": "error"
+    }
+}

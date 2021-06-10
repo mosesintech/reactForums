@@ -1,7 +1,7 @@
-const getNote = require('./getNote.js');
-const getNotes = require('./getNotes.js');
+const getNote = require('./getNote');
+const getNotes = require('./getNotes');
 
 module.exports = {
-    getNote,
-    getNotes,
-}
+  getNote,
+  getNotes,
+};

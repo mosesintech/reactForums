@@ -7,19 +7,19 @@ const { getPost, getPosts } = require('./api/posts/queries');
 const { getNote, getNotes } = require('./api/notes/queries');
 
 module.exports = new GraphQLObjectType({
-    name: 'rootQuery',
-    fields: {
-        getUser,
-        getUsers,
-        getCategory,
-        getCategories,
-        getForum,
-        getForums,
-        getThread,
-        getThreads,
-        getPost,
-        getPosts,
-        getNote,
-        getNotes,
-    }
+  name: 'rootQuery',
+  fields: {
+    getUser,
+    getUsers,
+    getCategory,
+    getCategories,
+    getForum,
+    getForums,
+    getThread,
+    getThreads,
+    getPost,
+    getPosts,
+    getNote,
+    getNotes,
+  },
 });

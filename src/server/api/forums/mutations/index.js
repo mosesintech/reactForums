@@ -1,11 +1,11 @@
-const addForum = require('./addForum.js');
-const updateForum = require('./updateForum.js');
-const deleteForum = require('./deleteForum.js');
-const restoreForum = require('./restoreForum.js');
+const addForum = require('./addForum');
+const updateForum = require('./updateForum');
+const deleteForum = require('./deleteForum');
+const restoreForum = require('./restoreForum');
 
 module.exports = {
-    addForum,
-    updateForum,
-    deleteForum,
-    restoreForum
-}
+  addForum,
+  updateForum,
+  deleteForum,
+  restoreForum,
+};

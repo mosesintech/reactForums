@@ -1,7 +1,7 @@
-const getThread = require('./getThread.js');
-const getThreads = require('./getThreads.js');
+const getThread = require('./getThread');
+const getThreads = require('./getThreads');
 
 module.exports = {
-    getThread,
-    getThreads,
-}
+  getThread,
+  getThreads,
+};

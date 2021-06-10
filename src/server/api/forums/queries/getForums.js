@@ -1,11 +1,11 @@
 const { GraphQLList } = require('graphql');
-const { ForumType } = require('../../../types.js');
-const { getForums } = require('../forumsModel.js');
+const { ForumType } = require('../../../types');
+const { getForums } = require('../forumsModel');
 
 module.exports = {
-    type: new GraphQLList(ForumType),
-    args: {},
-    resolve(parents, args) {
-        return getForums();
-    },
+  type: new GraphQLList(ForumType),
+  args: {},
+  resolve() {
+    return getForums();
+  },
 };

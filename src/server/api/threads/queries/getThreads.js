@@ -1,11 +1,11 @@
 const { GraphQLList } = require('graphql');
-const { ThreadType } = require('../../../types.js');
-const { getThreads } = require('../threadsModel.js');
+const { ThreadType } = require('../../../types');
+const { getThreads } = require('../threadsModel');
 
 module.exports = {
-    type: new GraphQLList(ThreadType),
-    args: {},
-    resolve(parents, args) {
-        return getThreads();
-    },
+  type: new GraphQLList(ThreadType),
+  args: {},
+  resolve() {
+    return getThreads();
+  },
 };

@@ -1,7 +1,7 @@
-const getCategory = require('./getCategory.js');
-const getCategories = require('./getCategories.js');
+const getCategory = require('./getCategory');
+const getCategories = require('./getCategories');
 
 module.exports = {
-    getCategory,
-    getCategories,
-}
+  getCategory,
+  getCategories,
+};

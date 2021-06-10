@@ -1,7 +1,7 @@
-const getForum = require('./getForum.js');
-const getForums = require('./getForums.js');
+const getForum = require('./getForum');
+const getForums = require('./getForums');
 
 module.exports = {
-    getForum,
-    getForums,
-}
+  getForum,
+  getForums,
+};

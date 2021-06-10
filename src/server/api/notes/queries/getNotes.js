@@ -1,11 +1,11 @@
 const { GraphQLList } = require('graphql');
-const { NoteType } = require('../../../types.js');
-const { getNotes } = require('../notesModel.js');
+const { NoteType } = require('../../../types');
+const { getNotes } = require('../notesModel');
 
 module.exports = {
-    type: new GraphQLList(NoteType),
-    args: {},
-    resolve(parents, args) {
-        return getNotes();
-    },
+  type: new GraphQLList(NoteType),
+  args: {},
+  resolve() {
+    return getNotes();
+  },
 };

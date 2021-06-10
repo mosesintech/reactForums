@@ -1,7 +1,9 @@
-exports.seed = function(knex) {
-  return knex('categories').del()
-    .then(function () {
-      return knex('categories').insert([
+/* eslint-disable func-names */
+exports.seed = function (knex) {
+  return knex('categories')
+    .del()
+    .then(() =>
+      knex('categories').insert([
         {
           name: 'Administration',
           description: 'Where forum admin talk happens',
@@ -11,6 +13,6 @@ exports.seed = function(knex) {
           name: 'General Discussion',
           description: 'For non-categorized chit-cat.',
         },
-      ]);
-    });
+      ])
+    );
 };

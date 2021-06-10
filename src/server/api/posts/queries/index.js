@@ -1,7 +1,7 @@
-const getPost = require('./getPost.js');
-const getPosts = require('./getPosts.js');
+const getPost = require('./getPost');
+const getPosts = require('./getPosts');
 
 module.exports = {
-    getPost,
-    getPosts,
-}
+  getPost,
+  getPosts,
+};
