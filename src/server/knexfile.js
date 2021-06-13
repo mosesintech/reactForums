@@ -13,6 +13,20 @@ module.exports = {
     },
   },
 
+  test: {
+    client: 'pg',
+    connection: {
+      database: 'rFTest',
+      host: 'localhost',
+    },
+    migrations: {
+      directory: `${__dirname}/data/migrations`,
+    },
+    seeds: {
+      directory: `${__dirname}/data/seeds`,
+    },
+  },
+
   staging: {
     client: 'postgresql',
     connection: {
