@@ -22,13 +22,19 @@ function getThreadByTitle(title) {
 }
 
 async function getThreadsByUser(user) {
-  const { author_id } = user;
+  const author = {
+    author_id: user.id,
+  };
+  const { author_id } = author;
   const threads = await findManyByParam('threads', { author_id });
   return threads;
 }
 
 async function getThreadsByForum(forum) {
-  const { forum_id } = forum;
+  const parent = {
+    forum_id: forum.id,
+  };
+  const { forum_id } = parent;
   const threads = await findManyByParam('threads', { forum_id });
   return threads;
 }

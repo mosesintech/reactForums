@@ -22,7 +22,10 @@ function getForumByName(name) {
 }
 
 function getForumByCategory(category) {
-  const { category_id } = category;
+  const parent = {
+    category_id: category.id,
+  };
+  const { category_id } = parent;
   return findManyByParam('forums', { category_id });
 }
 

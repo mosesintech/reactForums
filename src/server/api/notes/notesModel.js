@@ -17,7 +17,10 @@ function getNote(id) {
 }
 
 async function getNotesByUser(user) {
-  const { author_id } = user;
+  const author = {
+    author_id: user.id,
+  };
+  const { author_id } = author;
   const notes = await findManyByParam('notes', { author_id });
   return notes;
 }

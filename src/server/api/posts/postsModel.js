@@ -17,7 +17,10 @@ function getPost(id) {
 }
 
 async function getPostsByUser(user) {
-  const { author_id } = user;
+  const author = {
+    author_id: user.id,
+  };
+  const { author_id } = author;
   const posts = await findManyByParam('posts', { author_id });
   return posts;
 }
